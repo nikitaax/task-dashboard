@@ -1,0 +1,37 @@
+<mat-toolbar color="primary" class="dashboard-toolbar">
+  <mat-icon>home</mat-icon>
+  <span class="title-padding">Nikita's Task Dashboard</span>
+  <span class="spacer"></span>
+  <button mat-raised-button color="accent" (click)="openAddTask()">
+    <mat-icon>add</mat-icon>
+    Add Task
+  </button>
+</mat-toolbar>
+
+<div class="status-summary mat-elevation-z2">
+  <div class="status-card pending">
+    <span class="count">{{ totalPending }}</span>
+    <span class="label">Pending</span>
+  </div>
+  <div class="status-card in-progress">
+    <span class="count">{{ totalInProgress }}</span>
+    <span class="label">In Progress</span>
+  </div>
+  <div class="status-card completed">
+    <span class="count">{{ totalCompleted }}</span>
+    <span class="label">Completed</span>
+  </div>
+</div>
+
+<div class="navigation-buttons">
+  <button mat-stroked-button color="primary" routerLink="all-tasks">
+    All Tasks
+  </button>
+  <button mat-stroked-button color="primary" routerLink="completed-tasks">
+    Completed Tasks
+  </button>
+</div>
+
+<div class="task-section">
+  <router-outlet></router-outlet>
+</div>

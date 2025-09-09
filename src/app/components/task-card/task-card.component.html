@@ -1,0 +1,35 @@
+<mat-card class="task-card mat-elevation-z6">
+  <mat-card-header>
+    <mat-card-title>{{ task.title }}</mat-card-title>
+    <mat-card-subtitle
+      >Due: {{ task.dueDate | date : "mediumDate" }}</mat-card-subtitle
+    >
+  </mat-card-header>
+
+  <mat-card-content>
+    <p class="description">{{ task.description }}</p>
+
+    <mat-chip-listbox aria-label="Task status">
+      <mat-chip
+        [ngClass]="{
+          pending: task.status === 'Pending',
+          'in-progress': task.status === 'In-Progress',
+          completed: task.status === 'Completed'
+        }"
+      >
+        {{ task.status }}
+      </mat-chip>
+    </mat-chip-listbox>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-stroked-button color="primary" (click)="editTask()">
+      <mat-icon>edit</mat-icon>
+      Edit
+    </button>
+    <button mat-stroked-button color="warn" (click)="deleteTask()">
+      <mat-icon>delete</mat-icon>
+      Delete
+    </button>
+  </mat-card-actions>
+</mat-card>
