@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./task-list.component.scss'],
 })
 export class TaskListComponent implements OnInit {
-  @Input() showCompletedOnly: boolean = false;
+  @Input() showCompleted: boolean = false;
 
   private sortOrderSubject = new BehaviorSubject<'asc' | 'desc'>('asc');
   sortOrder$ = this.sortOrderSubject.asObservable();
@@ -32,7 +32,7 @@ export class TaskListComponent implements OnInit {
     this.tasks$ = this.taskService.getTasks();
 
     this.route.data.subscribe((data) => {
-      this.showCompletedOnly = data['completedOnly'] || false;
+      this.showCompleted = data['completedOnly'] || false;
     });
 
     this.filteredTasks$ = combineLatest([
@@ -44,7 +44,7 @@ export class TaskListComponent implements OnInit {
         let filtered =
           filter === 'All' ? tasks : tasks.filter((t) => t.status === filter);
 
-        if (this.showCompletedOnly) {
+        if (this.showCompleted) {
           filtered = filtered.filter((t) => t.status === 'Completed');
         }
 

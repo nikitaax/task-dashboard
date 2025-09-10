@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="dashboard-toolbar">
+<mat-toolbar color="primary" class="home-toolbar">
   <mat-icon>home</mat-icon>
   <span class="title-padding">Nikita's Task Dashboard</span>
   <span class="spacer"></span>
@@ -10,15 +10,15 @@
 
 <div class="status-summary mat-elevation-z2">
   <div class="status-card pending">
-    <span class="count">{{ totalPending }}</span>
+    <span class="count">{{ pendingCount }}</span>
     <span class="label">Pending</span>
   </div>
   <div class="status-card in-progress">
-    <span class="count">{{ totalInProgress }}</span>
+    <span class="count">{{ inProgressCount }}</span>
     <span class="label">In Progress</span>
   </div>
   <div class="status-card completed">
-    <span class="count">{{ totalCompleted }}</span>
+    <span class="count">{{ completedCount }}</span>
     <span class="label">Completed</span>
   </div>
 </div>

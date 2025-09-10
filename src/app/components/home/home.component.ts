@@ -10,10 +10,10 @@ import { Task } from 'src/app/models/task.model';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  showCompletedOnly: boolean = false;
-  totalPending: number = 0;
-  totalInProgress: number = 0;
-  totalCompleted: number = 0;
+  showCompleted: boolean = false;
+  pendingCount: number = 0;
+  inProgressCount: number = 0;
+  completedCount: number = 0;
 
   constructor(private dialog: MatDialog, private taskService: TaskService) {}
 
@@ -25,11 +25,15 @@ export class HomeComponent {
   }
 
   updateStatusCounts(tasks: Task[]) {
-    this.totalPending = tasks.filter((t) => t.status === 'Pending').length;
-    this.totalInProgress = tasks.filter(
+    this.pendingCount = tasks.filter(
+      (task) => task.status === 'Pending'
+    ).length;
+    this.inProgressCount = tasks.filter(
       (t) => t.status === 'In-Progress'
     ).length;
-    this.totalCompleted = tasks.filter((t) => t.status === 'Completed').length;
+    this.completedCount = tasks.filter(
+      (task) => task.status === 'Completed'
+    ).length;
   }
 
   openAddTask() {
@@ -45,7 +49,6 @@ export class HomeComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.taskService.addTask(result);
-        console.log('Task saved:', result);
       }
     });
   }
